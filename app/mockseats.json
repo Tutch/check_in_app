@@ -3,36 +3,43 @@
         {
             "identifier":"A1",
             "type":"W",
+            "reserveExpiresAt":0,
             "isReserved":false
         },
         {
             "identifier":"A2",
             "type":"F",
+            "reserveExpiresAt":0,
             "isReserved":false
         },
         {
             "identifier":"A3",
             "type":"A",
+            "reserveExpiresAt":0,
             "isReserved":false
         },
         {
             "identifier":"A4",
             "type":"MLR",
+            "reserveExpiresAt":0,
             "isReserved":false
         },
         {
             "identifier":"A5",
             "type":"A",
+            "reserveExpiresAt":0,
             "isReserved":false
         },
         {
             "identifier":"A6",
             "type":"F",
+            "reserveExpiresAt":0,
             "isReserved":false
         },
         {
             "identifier":"A7",
             "type":"W",
+            "reserveExpiresAt":0,
             "isReserved":false
         }
     ]
