@@ -19,7 +19,7 @@ module.exports = {
     },
     changePassengerSeat: (passenger_id, seat_id) => {
         return new Promise((resolve, reject) => {
-            Passengers.findOneAndUpdate(
+            Passenger.findOneAndUpdate(
                 { 'identifier':passenger_id },
                 { $set:{'seat': seat_id} }, (err, doc) => {
 
