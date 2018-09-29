@@ -1,10 +1,10 @@
 'use strict';
 const mongoose= require('mongoose');
-//const SeatSchema = require('./seat');
 
 let SeatSchema = new mongoose.Schema({
   identifier: String,
   type: String,
+  reserveExpiresAt: Number,
   isReserved: Boolean
 });
   
