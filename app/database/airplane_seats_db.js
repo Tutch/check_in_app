@@ -20,7 +20,7 @@ module.exports = {
     },
     listSeats: (filter={}) => {
         return new Promise((resolve, reject) => {
-            Seat.find((err, docs) => {
+            Seat.find(filter, (err, docs) => {
                 if(err) {
                     reject(err);
                 }
