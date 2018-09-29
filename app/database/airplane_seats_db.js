@@ -1,8 +1,5 @@
 'use strict';
-const mongoose = require('mongoose');
-const seats_models = require('../models/airplane_seats');
-const AirplaneSeats = seats_models.AirplaneSeats;
-const Seat = seats_models.Seat;
+const AirplaneSeats = require('../models/airplane_seats');
 
 module.exports = {
     saveSeats: (received_seats) => {

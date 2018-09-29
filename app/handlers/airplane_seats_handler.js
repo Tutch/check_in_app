@@ -1,5 +1,4 @@
 'use strict';
-const mongoose = require('mongoose');
 const airplane_db = require('../database/airplane_seats_db');
 
 module.exports = {
