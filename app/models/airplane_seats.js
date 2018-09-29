@@ -1,8 +1,18 @@
 'use strict';
-const SeatSchema = mongoose.model('Seat', SeatSchema)
+const mongoose= require('mongoose');
+//const SeatSchema = require('./seat');
 
-let AirplaneSeatsSchema = new mongoose.Schema({
-  seats: [SeatSchema]
+let SeatSchema = new mongoose.Schema({
+  identifier: String,
+  type: String,
+  isReserved: Boolean
 });
   
-module.exports = mongoose.model('AirplaneSeats', AirplaneSeatsSchema);
+let AirplaneSeatsSchema = new mongoose.Schema({
+  seats: [SeatSchema]
+}, {collection: 'seats'});
+
+module.exports = {
+  Seat: mongoose.model('Seat', SeatSchema),
+  AirplaneSeats: mongoose.model('AirplaneSeats', AirplaneSeatsSchema)
+}

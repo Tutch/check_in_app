@@ -1,0 +1,39 @@
+{
+    "seats": [
+        {
+            "identifier":"A1",
+            "type":"W",
+            "isReserved":false
+        },
+        {
+            "identifier":"A2",
+            "type":"F",
+            "isReserved":false
+        },
+        {
+            "identifier":"A3",
+            "type":"A",
+            "isReserved":false
+        },
+        {
+            "identifier":"A4",
+            "type":"MLR",
+            "isReserved":false
+        },
+        {
+            "identifier":"A5",
+            "type":"A",
+            "isReserved":false
+        },
+        {
+            "identifier":"A6",
+            "type":"F",
+            "isReserved":false
+        },
+        {
+            "identifier":"A7",
+            "type":"W",
+            "isReserved":false
+        }
+    ]
+}
