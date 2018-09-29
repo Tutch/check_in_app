@@ -14,7 +14,7 @@ module.exports = {
                     }        
                 });
             });
-            
+
             resolve(docs);
         });
     },
@@ -27,6 +27,28 @@ module.exports = {
         
                 resolve(docs);
             })
+        });
+    },
+    setSeatReserve: (passenger_id, seat_id) => {
+        return new Promise((resolve, reject) => {
+            // From ye old Stack
+            // https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
+            let timestamp = new Date();
+            let expiration = timestamp.setMinutes(timestamp.getMinutes() + 3);
+
+            Seat.findOneAndUpdate(
+                {_id: seat_id}, 
+                {$set:{
+                    passenger:passenger_id,
+                    reserveExpiresAt: expiration
+                }}, 
+                (err, doc) => {
+                    if(err) {
+                        reject(err);
+                    }
+
+                    resolve(doc);
+                })
         });
     }
 }

@@ -1,5 +1,6 @@
 'use strict';
 const passengers_db = require('../database/passengers_db');
+const seats_db = require('../database/airplane_seats_db');
 
 module.exports = {
     insertPassengers: (req, res) => {
@@ -17,23 +18,21 @@ module.exports = {
     },
     bookSeat: (req, res) => {
         // Booking is done after payment.
-        // Request needs to receive passenger and seat info (id)
+        // Request needs to receive passenger and seat identifiers
+        // Passenger identifier is his name, but it could be a unique
+        // identifier i.e passport number.
         let json = req.body;
         
-        if(json) {
-            // 1. update passenger info with seat id
-            // 2. Update seat with passenger id and +3 minutes expiration time
-            Promise.all([
-                passengers_db.changePassengerSeat(json.passengerId, json.seatId),
-                passengers_db.setSeatReserve(json.passengerId, json.seatId)
-            ]).then(values => {
-                console.log(values);
-            }).catch(err => {
-                console.log(err);
-            });
-        }
-
-        res.send('!!');
+        // 1. update passenger info with seat id
+        // 2. Update seat with passenger id and +3 minutes expiration time
+        Promise.all([
+            passengers_db.changePassengerSeat(json.passengerId, json.seatId),
+            //seats_db.setSeatReserve(json.passengerId, json.seatId)
+        ]).then(values => {
+            res.send('Booking done.');
+        }).catch(err => {
+            console.log('Oops.');
+        });
     },
     reserveSeat: (req, res) => {
         // Reservation is done before payment.

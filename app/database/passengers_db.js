@@ -20,7 +20,7 @@ module.exports = {
     changePassengerSeat: (passenger_id, seat_id) => {
         return new Promise((resolve, reject) => {
             Passenger.findOneAndUpdate(
-                { 'identifier':passenger_id },
+                { '_id':passenger_id },
                 { $set:{'seat': seat_id} }, (err, doc) => {
 
                 if(err) {
@@ -29,11 +29,6 @@ module.exports = {
 
                 resolve(doc);
             });
-        });
-    },
-    setSeatReserve: (passenger_id, seat_id) => {
-        return new Promise((resolve, reject) => {
-            resolve();
         });
     }
 }
