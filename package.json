@@ -1,0 +1,24 @@
+{
+  "name": "check_in_app",
+  "version": "1.0.0",
+  "description": "Application for check in",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tutch/check_in_app.git"
+  },
+  "keywords": [
+    "node",
+    "mongo",
+    "check_in"
+  ],
+  "author": "lucasmapurunga@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tutch/check_in_app/issues"
+  },
+  "homepage": "https://github.com/Tutch/check_in_app#readme"
+}
