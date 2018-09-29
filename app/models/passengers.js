@@ -3,8 +3,8 @@ const mongoose= require('mongoose');
 const Seat = require('./airplane_seats').Seat;
 
 let PassengerSchema = new mongoose.Schema({
-  identifier: String,
-  seat: mongoose.Schema.Types.ObjectId
+  identifier: {type: String, required: true},
+  seat: {type: mongoose.Schema.Types.ObjectId, required: false}
 });
   
 let AirplanePassengersSchema = new mongoose.Schema({

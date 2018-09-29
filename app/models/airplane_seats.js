@@ -2,10 +2,10 @@
 const mongoose= require('mongoose');
 
 let SeatSchema = new mongoose.Schema({
-  identifier: String,
-  type: String,
-  reserveExpiresAt: Number,
-  isReserved: Boolean
+  identifier: {type: String, required: true},
+  type: {type: String, required: true},
+  reserveExpiresAt: {type: Number, required: false},
+  passenger: {type: mongoose.Schema.Types.ObjectId, required: false}
 });
   
 let AirplaneSeatsSchema = new mongoose.Schema({

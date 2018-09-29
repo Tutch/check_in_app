@@ -8,7 +8,7 @@ const app = express()
 const port = 3000
 
 app.use('/seats', seats_router);
-app.use('/passenge', passengers_router);
+app.use('/passenger', passengers_router);
 
 app.listen(port, () => {
     console.log(`Server alive on ${port}.`);
