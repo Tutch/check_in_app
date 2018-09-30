@@ -11,10 +11,12 @@ module.exports = {
             passengers_db.savePassengers(receivedPass).then(result => {
                 res.send(result);
             }).catch(err => {
+                res.status(400);
                 res.send(err);
             });
         }else {
-            res.send('empty');
+            res.status(400)
+            res.send('No passengers to add.');
         }
     },
     bookSeat: (req, res) => {
@@ -31,15 +33,14 @@ module.exports = {
                 seats_db.bookSeat(json.passengerId, id),
                 passengers_db.changePassengerSeat(json.passengerId, id)
             ]).then(values => {
-                console.log(values);
-                res.send('ok');
+                res.send();
             }).catch(err => {
-                console.log(err);
-                res.send('):');
+                res.status(500)
+                res.send(err);
             });
         }).catch(err => {
-            console.log(err);
-            res.send('err');
+            res.status(500);
+            res.send(err);
         });
     },
     reserveSeat: (req, res) => {
@@ -59,6 +60,7 @@ module.exports = {
                 
                 // Booking game is on
                 if(diffMin < 3) {
+                    res.status(403);
                     res.send('This seat has been booked by someone else.');
                     return;
                 }
@@ -70,10 +72,12 @@ module.exports = {
                 res.send('Booking done.');
             }).catch(err => {
                 console.log(err);
+                res.status(500);
                 res.send('Oops.');
             });
         }).catch(err => {
             console.log(err);
+            res.status(500);
             res.send('Some error ocurred during the operation.');
         });
     }

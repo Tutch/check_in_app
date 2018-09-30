@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 const bodyParser = require('body-parser')
 const handler = require('../handlers/airplane_seats_handler');

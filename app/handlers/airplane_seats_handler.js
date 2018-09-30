@@ -12,13 +12,15 @@ module.exports = {
                 res.send(err);
             });
         }else {
-            res.send('empty');
+            res.status(400);
+            res.send('No seats to add.');
         }
     },
     listAllSeats: (req, res) => {
         airplane_db.listSeats().then(result => {
             res.send(result);
         }).catch(err => {
+            res.status(400);
             res.send(err);
         });
     }

@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express')
 const connection = require('./mongo_interface');
 

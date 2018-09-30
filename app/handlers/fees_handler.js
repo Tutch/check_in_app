@@ -9,16 +9,19 @@ module.exports = {
             fees_db.saveFees(receivedFees).then(result => {
                 res.send(result);
             }).catch(err => {
+                res.status(400);
                 res.send(err);
             });
         }else {
-            res.send('empty');
+            res.status(400);
+            res.send('No fees to add.');
         }
     },
     listFees: (req, res) => {
         fees_db.listFees().then(result => {
             res.send(result);
         }).catch(err => {
+            res.status(400);
             res.send(err);
         });
     }

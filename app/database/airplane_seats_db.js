@@ -1,5 +1,4 @@
 'use strict';
-const mongoose = require('mongoose');
 const Seat = require('../models/airplane_seats');
 const util = require('../util');
 
