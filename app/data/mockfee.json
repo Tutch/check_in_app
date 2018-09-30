@@ -1,0 +1,20 @@
+{
+    "fees":[
+        {
+            "identifier":"W",
+            "price":40
+        },
+        {
+            "identifier":"F",
+            "price":0
+        },
+        {
+            "identifier":"Aisle",
+            "price":20
+        },
+        {
+            "identifier":"MLR",
+            "price":80
+        }
+    ]
+}

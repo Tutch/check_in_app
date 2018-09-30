@@ -81,8 +81,9 @@ module.exports = {
             // https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
             let timestamp = new Date();
             let expiration = timestamp.setMinutes(timestamp.getMinutes() + 3);
-            console.log(passenger_id);
 
+            // It erases the previous entry before updating, so the
+            // user can't reserver every sit on the flight.
             Seat.findOneAndUpdate(
                 {passenger: passenger_id},
                 {
