@@ -38,15 +38,12 @@ module.exports = {
                 if(diffMin < 3) {
                     res.send('This seat has been booked by someone else.');
                     return;
-                }
+                }-
             }
     
             // 1. update passenger info with seat id
             // 2. Update seat with passenger id and +3 minutes expiration time
-            Promise.all([
-                passengers_db.changePassengerSeat(json.passengerId, json.seatId),
-                seats_db.setSeatReserve(json.passengerId, json.seatId)
-            ]).then(values => {
+            seats_db.setSeatReserve(json.passengerId, json.seatId).then(values => {
                 res.send('Booking done.');
             }).catch(err => {
                 console.log(err);
@@ -60,6 +57,6 @@ module.exports = {
     reserveSeat: (req, res) => {
         // Reservation is done before payment.
         // Request needs to receive passenger info, namely its id
-        // Step 1. Reserve the seat   
+        // Step 1. Reserve the seat   -
     }
 };
