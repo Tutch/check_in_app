@@ -40,6 +40,21 @@ to the /passengers/bookseat endpoint. The server will check if that user has a p
 3. The server will repeat the same steap as 5. above
 4. The server will check and notice that the user has no seat reservation, so it will choose a random seat to that user.
 
+## JSON Examples
+> /passengers/reserveseat
+
+{
+  "passengerId": *mongodb_id*,
+  "seatId": *mongodb_id*
+}
+
+> /passengers/bookseat
+
+{
+  "passengerId": *mongodb_id*
+}
+
+
 ## Mock Data
 There are a couple json files you on the /data folder you can use to populate
 the database. Each file corresponds to one of the collections: fees, passengers and seats.
