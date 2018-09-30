@@ -5,7 +5,7 @@ const handler = require('../handlers/passengers_handler');
 const router = express.Router(); 
 
 router.post('/insert', bodyParser.json(), handler.insertPassengers);
-router.post('/bookseat', bodyParser.json(), handler.bookSeat);
-router.post('/reserveseat', bodyParser.json(), handler.reserveSeat);
+router.put('/bookseat', bodyParser.json(), handler.bookSeat);
+router.put('/reserveseat', bodyParser.json(), handler.reserveSeat);
 
 module.exports = router;
