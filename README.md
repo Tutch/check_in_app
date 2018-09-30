@@ -26,14 +26,7 @@ Suppose the passanger wants to reserve a seat. The user wants to see the prices 
 
 1. The application fetches all the available seats with */seats/all*. It also fetches the different prices of the seats with */fees/list*.
 2. User looks around and decides on a particular seat. He wants to reserve the seat A3.
-3. The application will look at the _id of the seat A3 and the _id of the current user, then POST
-
-{
-  "passengerId": ID OF THE USER
-  "seatId": ID OF THIS SEAT
-}
-
-to the /passengers/reserveseat endpoint.
+3. The application will look at the _id of the seat A3 and the _id of the current user, then POST them to the /passengers/reserveseat endpoint.
 4. The user gets around to paying for his ticket.
 5. The server will then send the id of the user throught the following JSON
 {
@@ -41,7 +34,7 @@ to the /passengers/reserveseat endpoint.
 }
 to the /passengers/bookseat endpoint. The server will check if that user has a previous reservation and assign that seat to the user.
 
-## User doesn't bother with reservation and just wants to book his flight.
+#### User doesn't bother with reservation and just wants to book his flight.
 1. 1 and 2 from above repeat.
 2. The user does not mind reserving any particular seat.
 3. The server will repeat the same steap as 5. above
