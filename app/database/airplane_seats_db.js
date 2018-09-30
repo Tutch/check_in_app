@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 const Seat = require('../models/airplane_seats');
+const util = require('../util');
 
 module.exports = {
     saveSeats: (received_seats) => {
@@ -30,12 +31,12 @@ module.exports = {
             })
         });
     },
-    bookSeat: (seatId=undefined) => {
+    bookSeat: (passenger_id, seatId=undefined) => {
         return new Promise((resolve, reject) => {
-            if(id) {
-                Seat.findAndUpdate(
-                    {'_id': id}, 
-                    {$set:{'reserveExpiresAt':0}}, 
+            if(seatId) {
+                Seat.findOneAndUpdate(
+                    {'_id': seatId}, 
+                    {$set:{reserveExpiresAt:0}}, 
                     (err, doc) => {
                         if(err) {
                             reject(err);
@@ -44,7 +45,33 @@ module.exports = {
                         resolve();
                 })
             }else {
-                Seat.find({})
+                Seat.find({}, (err, docs)  => {
+                    if(err) {
+                        console.log(err);
+                        reject(err);
+                    }
+
+                    let arr = docs.filter(d => {
+                        return util.minutesFromTimeToNow(d.reserveExpiresAt) > 3 || (d.reserveExpiresAt == 0 && !d.passenger);
+                    });
+
+                    let idx = Math.floor(Math.random() * arr.length);
+
+                    Seat.findOneAndUpdate(
+                        {_id: arr[idx]['_id']},
+                        {$set:{
+                            passenger: passenger_id,
+                            reserveExpiresAt: 0
+                        }},
+                        (err, docs) => {
+                            if(err) {
+                                console.log(err);
+                                reject(err);
+                            }
+
+                            resolve(docs);
+                        })
+                });
             }
         });
     },
@@ -67,23 +94,20 @@ module.exports = {
                     }
                 },
                 (err, docs) => {
-                    console.log(err);
-                    console.log(docs);
+                    Seat.findOneAndUpdate(
+                        {_id: seat_id}, 
+                        {$set:{
+                            passenger:passenger_id,
+                            reserveExpiresAt: expiration
+                        }}, 
+                        (err, doc) => {
+                            if(err) {
+                                reject(err);
+                            }
+        
+                            resolve(doc);
+                    });
                 });
-            
-            Seat.findOneAndUpdate(
-                {_id: seat_id}, 
-                {$set:{
-                    passenger:passenger_id,
-                    reserveExpiresAt: expiration
-                }}, 
-                (err, doc) => {
-                    if(err) {
-                        reject(err);
-                    }
-
-                    resolve(doc);
-            });
         });
     }
 }

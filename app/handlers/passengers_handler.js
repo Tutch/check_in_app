@@ -1,7 +1,6 @@
 'use strict';
 const passengers_db = require('../database/passengers_db');
 const seats_db = require('../database/airplane_seats_db');
-const moment = require('moment');
 const util = require('../util');
 
 module.exports = {
@@ -26,13 +25,17 @@ module.exports = {
         let json = req.body;
 
         seats_db.listSeats({'passenger':json.passengerId}).then(doc => {
+            let id = doc[0] ? doc[0]['_id'] : undefined;
+
             Promise.all([
-                seats_db.bookSeat(doc[0]['_id']),
-                passengers_db.changePassengerSeat(json.passengerId, doc[0]._id)
+                seats_db.bookSeat(json.passengerId, id),
+                passengers_db.changePassengerSeat(json.passengerId, id)
             ]).then(values => {
-
+                console.log(values);
+                res.send('ok');
             }).catch(err => {
-
+                console.log(err);
+                res.send('):');
             });
         }).catch(err => {
             console.log(err);
